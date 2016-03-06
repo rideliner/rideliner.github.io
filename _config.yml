@@ -1,0 +1,7 @@
+---
+github: rideliner
+exclude:
+  - Rakefile
+  - Gemfile
+timezone: America/Denver
+permalink: /:year/:month/:title

@@ -1,0 +1,11 @@
+language: ruby
+cache: false
+before_install:
+- gem update --system
+- gem install bundler
+gemfile: Gemfile
+rvm: 2.3.0
+script: bundle exec rake ci
+branches:
+  only: development
+sudo: false
