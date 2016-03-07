@@ -3,5 +3,6 @@ github: rideliner
 exclude:
   - Rakefile
   - Gemfile
+  - vendor/
 timezone: America/Denver
 permalink: /:year/:month/:title
