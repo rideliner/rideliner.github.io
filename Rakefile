@@ -23,7 +23,7 @@ if ENV['TRAVIS']
     t.init_jekyll
 
     # Don't delete CNAME
-    t.handler.handle_precheck_delete? { |file| file != 'CNAME' }
+    t.handler.handle_precheck_delete? { |file| puts file; file != 'CNAME' }
   end
 end
 
