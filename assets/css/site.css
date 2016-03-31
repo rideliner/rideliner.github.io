@@ -36,6 +36,24 @@ li {
 body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14pt;
+
+  min-height: 100%;
+  padding-bottom: 6rem;
+  margin: 0;
+  position: relative;
+}
+
+.body-wrapper {
+  padding-top: 2rem;
+}
+
+footer {
+  margin-top: 2rem;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 1rem;
+  background-color: #efefef;
 }
 
 .red {
