@@ -95,11 +95,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="../PolymorphicDelegated.html" title="Dizby::PolymorphicDelegated (module)">PolymorphicDelegated</a></span></dd>
-  </dl>
-  
   
 
   
@@ -147,7 +142,7 @@
 </li>
 
     
-      <li class="public ">
+      <li class="private ">
   <span class="summary_signature">
     
       <a href="#tcp_acl-instance_method" title="#tcp_acl (instance method)">#<strong>tcp_acl</strong>  &#x21d2; Object </a>
@@ -163,7 +158,7 @@
     
     
   
-  
+  <span class="note title private">private</span>
   
   
   
@@ -290,31 +285,10 @@
   
   
   
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../PolymorphicDelegated.html" title="Dizby::PolymorphicDelegated (module)">PolymorphicDelegated</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../PolymorphicDelegated.html#included-class_method" title="Dizby::PolymorphicDelegated.included (method)">included</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../BasicServer.html" title="Dizby::BasicServer (class)">BasicServer</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="../BasicServer.html#add_uri_alias-instance_method" title="Dizby::BasicServer#add_uri_alias (method)">#add_uri_alias</a></span>, <span class='object_link'><a href="../BasicServer.html#alive%3F-instance_method" title="Dizby::BasicServer#alive? (method)">#alive?</a></span>, <span class='object_link'><a href="../BasicServer.html#close-instance_method" title="Dizby::BasicServer#close (method)">#close</a></span>, <span class='object_link'><a href="../BasicServer.html#close_shutdown_pipe-instance_method" title="Dizby::BasicServer#close_shutdown_pipe (method)">#close_shutdown_pipe</a></span>, <span class='object_link'><a href="../BasicServer.html#here%3F-instance_method" title="Dizby::BasicServer#here? (method)">#here?</a></span>, <span class='object_link'><a href="../BasicServer.html#shutdown-instance_method" title="Dizby::BasicServer#shutdown (method)">#shutdown</a></span>, <span class='object_link'><a href="../BasicServer.html#to_id-instance_method" title="Dizby::BasicServer#to_id (method)">#to_id</a></span>, <span class='object_link'><a href="../BasicServer.html#to_obj-instance_method" title="Dizby::BasicServer#to_obj (method)">#to_obj</a></span></p>
 
   
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../ClassicAttributeAccess.html" title="Dizby::ClassicAttributeAccess (module)">ClassicAttributeAccess</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../ClassicAttributeAccess.html#attr_accessor-instance_method" title="Dizby::ClassicAttributeAccess#attr_accessor (method)">#attr_accessor</a></span>, <span class='object_link'><a href="../ClassicAttributeAccess.html#attr_reader-instance_method" title="Dizby::ClassicAttributeAccess#attr_reader (method)">#attr_reader</a></span>, <span class='object_link'><a href="../ClassicAttributeAccess.html#attr_writer-instance_method" title="Dizby::ClassicAttributeAccess#attr_writer (method)">#attr_writer</a></span></p>
-
   
   
   
@@ -364,6 +338,8 @@
       <pre class="lines">
 
 
+58
+59
 60
 61
 62
@@ -379,12 +355,10 @@
 72
 73
 74
-75
-76
-77</pre>
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_front'>front</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_port'>port</span> <span class='op'>||=</span> <span class='int'>0</span>
@@ -441,12 +415,12 @@
       <pre class="lines">
 
 
-79
-80
-81</pre>
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_port'>port</span>
   <span class='ivar'>@port</span>
@@ -461,7 +435,7 @@
       <div class="method_details ">
   <h3 class="signature " id="tcp_acl-instance_method">
   
-    #<strong>tcp_acl</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>tcp_acl</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly, private)</span>
   
 
   
@@ -483,12 +457,12 @@
       <pre class="lines">
 
 
-93
-94
-95</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tcp_acl'>tcp_acl</span>
   <span class='ivar'>@config</span><span class='lbracket'>[</span><span class='symbol'>:tcp_acl</span><span class='rbracket'>]</span>
@@ -520,6 +494,7 @@
       <pre class="lines">
 
 
+94
 95
 96
 97
@@ -529,11 +504,10 @@
 101
 102
 103
-104
-105</pre>
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_open_socket_inaddr_any'>open_socket_inaddr_any</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_infos'>infos</span> <span class='op'>=</span> <span class='const'>Socket</span><span class='period'>.</span><span class='id identifier rubyid_getaddrinfo'>getaddrinfo</span><span class='lparen'>(</span>
@@ -572,6 +546,8 @@
       <pre class="lines">
 
 
+79
+80
 81
 82
 83
@@ -580,12 +556,10 @@
 86
 87
 88
-89
-90
-91</pre>
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/tcp.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept'>accept</span>
   <span class='id identifier rubyid_socket'>socket</span> <span class='op'>=</span> <span class='kw'>nil</span>
