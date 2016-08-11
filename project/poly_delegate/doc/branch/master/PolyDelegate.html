@@ -399,12 +399,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+25
 26
-27
-28</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_caller'>caller</span>
   <span class='id identifier rubyid_callers'>callers</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
@@ -491,12 +491,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+47
 48
-49
-50</pre>
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_callers'>callers</span><span class='lparen'>(</span><span class='id identifier rubyid_num'>num</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_caller_locations'>caller_locations</span><span class='lparen'>(</span><span class='int'>2</span><span class='comma'>,</span> <span class='id identifier rubyid_num'>num</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:label</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span>
@@ -565,16 +565,16 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+53
 54
 55
 56
 57
 58
-59
-60</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/poly_delegate/call.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/poly_delegate/call.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_delegated_method'>create_delegated_method</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_method'>method</span> <span class='op'>=</span> <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_instance_method'>instance_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -712,14 +712,14 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+42
 43
 44
 45
-46
-47</pre>
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/poly_delegate/call.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/poly_delegate/call.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delegate_call'>delegate_call</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delegator'>delegator</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid_distinguish_delegator'>distinguish_delegator</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -906,6 +906,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+23
 24
 25
 26
@@ -914,11 +915,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
 29
 30
 31
-32
-33</pre>
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/poly_delegate/call.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/poly_delegate/call.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_distinguish_delegator'>distinguish_delegator</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delegator'>delegator</span> <span class='op'>=</span>
@@ -1020,6 +1020,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+63
 64
 65
 66
@@ -1027,11 +1028,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
 68
 69
 70
-71
-72</pre>
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_method_visibility'>method_visibility</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_mod'>mod</span><span class='period'>.</span><span class='id identifier rubyid_public_method_defined?'>public_method_defined?</span> <span class='id identifier rubyid_method'>method</span>
@@ -1149,6 +1149,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+115
 116
 117
 118
@@ -1157,11 +1158,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
 121
 122
 123
-124
-125</pre>
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_redefine_method'>redefine_method</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_visibility'>visibility</span> <span class='op'>=</span> <span class='id identifier rubyid_method_visibility'>method_visibility</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1260,12 +1260,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+89
 90
-91
-92</pre>
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/poly_delegate/method.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set_method_visibility'>set_method_visibility</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_visibility'>visibility</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mod'>mod</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span> <span class='id identifier rubyid_visibility'>visibility</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span>
