@@ -362,6 +362,7 @@
       <pre class="lines">
 
 
+12
 13
 14
 15
@@ -369,11 +370,10 @@
 17
 18
 19
-20
-21</pre>
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_stream'>stream</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_stream'>stream</span><span class='rparen'>)</span>
@@ -421,12 +421,12 @@
       <pre class="lines">
 
 
+66
 67
-68
-69</pre>
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span>
   <span class='ivar'>@shutdown_pipe</span>
@@ -458,14 +458,14 @@
       <pre class="lines">
 
 
+43
 44
 45
 46
-47
-48</pre>
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='ivar'>@object_space</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
@@ -503,14 +503,14 @@ so that it doesn’t get consumed by the garbage collector</p>
       <pre class="lines">
 
 
+53
 54
 55
 56
-57
-58</pre>
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_distributed'>make_distributed</span><span class='lparen'>(</span><span class='id identifier rubyid__obj'>_obj</span><span class='comma'>,</span> <span class='id identifier rubyid__error'>_error</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_distributed'>distributed</span> <span class='op'>=</span> <span class='kw'>super</span>
@@ -560,6 +560,7 @@ so that it doesn’t get consumed by the garbage collector</p>
       <pre class="lines">
 
 
+22
 23
 24
 25
@@ -572,11 +573,10 @@ so that it doesn’t get consumed by the garbage collector</p>
 32
 33
 34
-35
-36</pre>
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recv_request'>recv_request</span>
   <span class='id identifier rubyid_wait_for_stream'>wait_for_stream</span>
@@ -612,14 +612,14 @@ so that it doesn’t get consumed by the garbage collector</p>
       <pre class="lines">
 
 
+37
 38
 39
 40
-41
-42</pre>
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_reply'>send_reply</span><span class='lparen'>(</span><span class='id identifier rubyid_succ'>succ</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_dump_data'>dump_data</span><span class='lparen'>(</span><span class='id identifier rubyid_succ'>succ</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_dump_data'>dump_data</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='comma'>,</span> <span class='op'>!</span><span class='id identifier rubyid_succ'>succ</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -646,15 +646,15 @@ so that it doesn’t get consumed by the garbage collector</p>
       <pre class="lines">
 
 
+59
 60
 61
 62
 63
-64
-65</pre>
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wait_for_stream'>wait_for_stream</span>
   <span class='id identifier rubyid_readable'>readable</span><span class='comma'>,</span> <span class='op'>=</span> <span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='ivar'>@stream</span><span class='comma'>,</span> <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rbracket'>]</span><span class='rparen'>)</span>

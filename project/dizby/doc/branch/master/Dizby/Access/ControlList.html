@@ -292,14 +292,14 @@ else, deny</p>
       <pre class="lines">
 
 
+23
 24
 25
 26
-27
-28</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_order'>order</span> <span class='op'>=</span> <span class='symbol'>:deny_allow</span><span class='rparen'>)</span>
   <span class='ivar'>@order</span> <span class='op'>=</span> <span class='id identifier rubyid_order'>order</span>
@@ -356,6 +356,7 @@ else, deny</p>
       <pre class="lines">
 
 
+33
 34
 35
 36
@@ -364,11 +365,10 @@ else, deny</p>
 39
 40
 41
-42
-43</pre>
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allow_addr?'>allow_addr?</span><span class='lparen'>(</span><span class='id identifier rubyid_addr'>addr</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='ivar'>@order</span>
@@ -423,14 +423,14 @@ else, deny</p>
       <pre class="lines">
 
 
+66
 67
 68
 69
-70
-71</pre>
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allow_deny?'>allow_deny?</span><span class='lparen'>(</span><span class='id identifier rubyid_addr'>addr</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='ivar'>@deny</span><span class='period'>.</span><span class='id identifier rubyid_matches?'>matches?</span><span class='lparen'>(</span><span class='id identifier rubyid_addr'>addr</span><span class='rparen'>)</span>
@@ -480,12 +480,12 @@ else, deny</p>
       <pre class="lines">
 
 
+29
 30
-31
-32</pre>
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allow_socket?'>allow_socket?</span><span class='lparen'>(</span><span class='id identifier rubyid_soc'>soc</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_allow_addr?'>allow_addr?</span><span class='lparen'>(</span><span class='id identifier rubyid_soc'>soc</span><span class='period'>.</span><span class='id identifier rubyid_peeraddr'>peeraddr</span><span class='rparen'>)</span>
@@ -533,14 +533,14 @@ else, deny</p>
       <pre class="lines">
 
 
+60
 61
 62
 63
-64
-65</pre>
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_deny_allow?'>deny_allow?</span><span class='lparen'>(</span><span class='id identifier rubyid_addr'>addr</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='ivar'>@allow</span><span class='period'>.</span><span class='id identifier rubyid_matches?'>matches?</span><span class='lparen'>(</span><span class='id identifier rubyid_addr'>addr</span><span class='rparen'>)</span>
@@ -567,6 +567,7 @@ else, deny</p>
       <pre class="lines">
 
 
+44
 45
 46
 47
@@ -578,11 +579,10 @@ else, deny</p>
 53
 54
 55
-56
-57</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/access/control_list.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install_list'>install_list</span><span class='lparen'>(</span><span class='id identifier rubyid_list'>list</span><span class='rparen'>)</span>
   <span class='const'>Hash</span><span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_list'>list</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_permission'>permission</span><span class='comma'>,</span> <span class='id identifier rubyid_domain'>domain</span><span class='op'>|</span>

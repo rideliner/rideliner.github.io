@@ -370,13 +370,13 @@
       <pre class="lines">
 
 
+16
 17
 18
-19
-20</pre>
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_log_transform'>log_transform</span><span class='rparen'>)</span>
   <span class='ivar'>@config</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span>
@@ -419,12 +419,12 @@
       <pre class="lines">
 
 
+22
 23
-24
-25</pre>
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_limit'>load_limit</span>
   <span class='ivar'>@config</span><span class='lbracket'>[</span><span class='symbol'>:load_limit</span><span class='rbracket'>]</span>
@@ -461,12 +461,12 @@
       <pre class="lines">
 
 
+21
 22
-23
-24</pre>
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span>
   <span class='ivar'>@log</span>
@@ -521,12 +521,12 @@
       <pre class="lines">
 
 
+34
 35
-36
-37</pre>
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alive?'>alive?</span>
   <span class='kw'>true</span>
@@ -551,12 +551,12 @@
       <pre class="lines">
 
 
+24
 25
-26
-27</pre>
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_connect_to'>connect_to</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
   <span class='const'>ProtocolManager</span><span class='period'>.</span><span class='id identifier rubyid_open_client'>open_client</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
@@ -581,17 +581,17 @@
       <pre class="lines">
 
 
+38
 39
 40
 41
 42
 43
 44
-45
-46</pre>
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_distributed'>make_distributed</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_error'>error</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_error'>error</span>
@@ -621,10 +621,10 @@
       <pre class="lines">
 
 
-33</pre>
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shutdown'>shutdown</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -647,12 +647,12 @@
       <pre class="lines">
 
 
+28
 29
-30
-31</pre>
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/abstract.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spawn_on'>spawn_on</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
   <span class='const'>ProtocolManager</span><span class='period'>.</span><span class='id identifier rubyid_spawn_server'>spawn_server</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>

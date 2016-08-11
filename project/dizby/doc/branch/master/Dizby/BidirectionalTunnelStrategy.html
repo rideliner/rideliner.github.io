@@ -247,13 +247,13 @@
       <pre class="lines">
 
 
+15
 16
 17
-18
-19</pre>
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/bidirectional_strategy.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/bidirectional_strategy.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server_port'>server_port</span><span class='comma'>,</span> <span class='id identifier rubyid_client_port'>client_port</span><span class='rparen'>)</span>
   <span class='ivar'>@server_port</span> <span class='op'>=</span> <span class='id identifier rubyid_server_port'>server_port</span>
@@ -286,15 +286,15 @@
       <pre class="lines">
 
 
+27
 28
 29
 30
 31
-32
-33</pre>
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/bidirectional_strategy.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/bidirectional_strategy.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_stream'>stream</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_local_tunnel'>local_tunnel</span> <span class='op'>=</span> <span class='id identifier rubyid_stream'>stream</span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -322,15 +322,15 @@
       <pre class="lines">
 
 
+20
 21
 22
 23
 24
-25
-26</pre>
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/bidirectional_strategy.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/bidirectional_strategy.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_stream'>stream</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_local_tunnel'>local_tunnel</span> <span class='op'>=</span> <span class='id identifier rubyid_create_local_tunnel'>create_local_tunnel</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='ivar'>@server_port</span><span class='rparen'>)</span>

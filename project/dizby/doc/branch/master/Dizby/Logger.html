@@ -232,15 +232,15 @@
       <pre class="lines">
 
 
+11
 12
 13
 14
 15
-16
-17</pre>
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/utility/log.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/utility/log.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>output:</span> <span class='gvar'>$stderr</span><span class='comma'>,</span> <span class='label'>level:</span> <span class='const'>Logger</span><span class='op'>::</span><span class='const'>ERROR</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_transformer'>transformer</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
@@ -275,16 +275,16 @@
       <pre class="lines">
 
 
+23
 24
 25
 26
 27
 28
-29
-30</pre>
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/utility/log.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/utility/log.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_transform_formatter'>transform_formatter</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_transformer'>transformer</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_default_formatter'>default_formatter</span> <span class='op'>=</span> <span class='const'>Logger</span><span class='op'>::</span><span class='const'>Formatter</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -319,13 +319,13 @@
       <pre class="lines">
 
 
+18
 19
 20
-21
-22</pre>
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/utility/log.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/utility/log.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_backtrace'>backtrace</span><span class='lparen'>(</span><span class='id identifier rubyid_exception'>exception</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_error'>error</span><span class='lparen'>(</span><span class='id identifier rubyid_exception'>exception</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rparen'>)</span>

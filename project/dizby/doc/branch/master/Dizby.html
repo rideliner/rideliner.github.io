@@ -83,7 +83,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/dizby/error.rb<span class="defines">,<br />
-  lib/dizby/service.rb,<br /> lib/dizby/version.rb,<br /> lib/dizby/access/list.rb,<br /> lib/dizby/utility/log.rb,<br /> lib/dizby/access/entry.rb,<br /> lib/dizby/server/basic.rb,<br /> lib/dizby/tunnel/basic.rb,<br /> lib/dizby/protocols/tcp.rb,<br /> lib/dizby/worker/server.rb,<br /> lib/dizby/stream/client.rb,<br /> lib/dizby/protocols/unix.rb,<br /> lib/dizby/protocols/dead.rb,<br /> lib/dizby/utility/string.rb,<br /> lib/dizby/protocol/basic.rb,<br /> lib/dizby/tunnel/factory.rb,<br /> lib/dizby/tunnel/spawned.rb,<br /> lib/dizby/converter/timed.rb,<br /> lib/dizby/access/insecure.rb,<br /> lib/dizby/server/abstract.rb,<br /> lib/dizby/utility/monitor.rb,<br /> lib/dizby/tunnel/abstract.rb,<br /> lib/dizby/stream/writable.rb,<br /> lib/dizby/stream/readable.rb,<br /> lib/dizby/converter/simple.rb,<br /> lib/dizby/protocols/secure.rb,<br /> lib/dizby/protocol/refined.rb,<br /> lib/dizby/protocol/manager.rb,<br /> lib/dizby/stream/query_ref.rb,<br /> lib/dizby/stream/messenger.rb,<br /> lib/dizby/utility/self_pipe.rb,<br /> lib/dizby/distributed/array.rb,<br /> lib/dizby/distributed/proxy.rb,<br /> lib/dizby/worker/connection.rb,<br /> lib/dizby/stream/connection.rb,<br /> lib/dizby/utility/io_barrier.rb,<br /> lib/dizby/utility/semi_built.rb,<br /> lib/dizby/distributed/object.rb,<br /> lib/dizby/tunnel/basic_spawn.rb,<br /> lib/dizby/access/control_list.rb,<br /> lib/dizby/server/registration.rb,<br /> lib/dizby/utility/timed_state.rb,<br /> lib/dizby/distributed/unknown.rb,<br /> lib/dizby/utility/configurable.rb,<br /> lib/dizby/worker/invoke_method.rb,<br /> lib/dizby/tunnel/spawn_command.rb,<br /> lib/dizby/tunnel/local_strategy.rb,<br /> lib/dizby/distributed/undumpable.rb,<br /> lib/dizby/distributed/semi_proxy.rb,<br /> lib/dizby/tunnel/tunnelable_local.rb,<br /> lib/dizby/utility/timed_collection.rb,<br /> lib/dizby/tunnel/tunnelable_remote.rb,<br /> lib/dizby/tunnel/bidirectional_strategy.rb</span>
+  lib/dizby/version.rb,<br /> lib/dizby/service.rb,<br /> lib/dizby/utility/log.rb,<br /> lib/dizby/access/list.rb,<br /> lib/dizby/tunnel/basic.rb,<br /> lib/dizby/access/entry.rb,<br /> lib/dizby/server/basic.rb,<br /> lib/dizby/stream/client.rb,<br /> lib/dizby/protocols/tcp.rb,<br /> lib/dizby/worker/server.rb,<br /> lib/dizby/protocol/basic.rb,<br /> lib/dizby/tunnel/factory.rb,<br /> lib/dizby/tunnel/spawned.rb,<br /> lib/dizby/protocols/dead.rb,<br /> lib/dizby/protocols/unix.rb,<br /> lib/dizby/utility/string.rb,<br /> lib/dizby/stream/writable.rb,<br /> lib/dizby/stream/readable.rb,<br /> lib/dizby/converter/timed.rb,<br /> lib/dizby/tunnel/abstract.rb,<br /> lib/dizby/utility/monitor.rb,<br /> lib/dizby/access/insecure.rb,<br /> lib/dizby/server/abstract.rb,<br /> lib/dizby/stream/query_ref.rb,<br /> lib/dizby/stream/messenger.rb,<br /> lib/dizby/protocol/manager.rb,<br /> lib/dizby/protocol/refined.rb,<br /> lib/dizby/converter/simple.rb,<br /> lib/dizby/protocols/secure.rb,<br /> lib/dizby/stream/connection.rb,<br /> lib/dizby/distributed/proxy.rb,<br /> lib/dizby/distributed/array.rb,<br /> lib/dizby/worker/connection.rb,<br /> lib/dizby/utility/self_pipe.rb,<br /> lib/dizby/distributed/object.rb,<br /> lib/dizby/tunnel/basic_spawn.rb,<br /> lib/dizby/utility/semi_built.rb,<br /> lib/dizby/utility/io_barrier.rb,<br /> lib/dizby/distributed/unknown.rb,<br /> lib/dizby/utility/timed_state.rb,<br /> lib/dizby/access/control_list.rb,<br /> lib/dizby/server/registration.rb,<br /> lib/dizby/tunnel/spawn_command.rb,<br /> lib/dizby/worker/invoke_method.rb,<br /> lib/dizby/utility/configurable.rb,<br /> lib/dizby/tunnel/local_strategy.rb,<br /> lib/dizby/distributed/undumpable.rb,<br /> lib/dizby/distributed/semi_proxy.rb,<br /> lib/dizby/tunnel/tunnelable_local.rb,<br /> lib/dizby/tunnel/tunnelable_remote.rb,<br /> lib/dizby/utility/timed_collection.rb,<br /> lib/dizby/tunnel/bidirectional_strategy.rb</span>
 </dd>
   </dl>
   
@@ -362,14 +362,14 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+8
 9
 10
 11
-12
-13</pre>
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/utility/string.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/utility/string.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_any_to_s'>any_to_s</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_obj'>obj</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -396,6 +396,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+24
 25
 26
 27
@@ -405,11 +406,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
 31
 32
 33
-34
-35</pre>
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/access/insecure.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/access/insecure.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_check_hidden_method'>check_hidden_method</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_msg_id'>msg_id</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_private_methods'>private_methods</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_msg_id'>msg_id</span><span class='rparen'>)</span>
@@ -442,6 +442,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+12
 13
 14
 15
@@ -451,11 +452,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
 19
 20
 21
-22
-23</pre>
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/access/insecure.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/access/insecure.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_check_insecure_method'>check_insecure_method</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_msg_id'>msg_id</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_msg_id'>msg_id</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
@@ -498,16 +498,16 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+21
 22
 23
 24
 25
 26
-27
-28</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/registration.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/registration.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_obj'>get_obj</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_ref'>ref</span><span class='rparen'>)</span>
   <span class='ivar'>@servers</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
@@ -536,13 +536,13 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+10
 11
 12
-13
-14</pre>
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/utility/monitor.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/utility/monitor.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_monitor'>monitor</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='const'>MonitorMixin</span><span class='rparen'>)</span>
@@ -604,12 +604,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+12
 13
-14
-15</pre>
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/registration.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/registration.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_register_server'>register_server</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span>
   <span class='ivar'>@servers</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@servers</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_server'>server</span> <span class='rbrace'>}</span>
@@ -634,12 +634,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.</p>
       <pre class="lines">
 
 
+16
 17
-18
-19</pre>
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/server/registration.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/server/registration.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_unregister_server'>unregister_server</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span>
   <span class='ivar'>@servers</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@servers</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span> <span class='rbrace'>}</span>

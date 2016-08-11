@@ -266,17 +266,17 @@
       <pre class="lines">
 
 
+11
 12
 13
 14
 15
 16
 17
-18
-19</pre>
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='id identifier rubyid_argv'>argv</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@obj</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span>
@@ -313,6 +313,7 @@
       <pre class="lines">
 
 
+37
 38
 39
 40
@@ -320,11 +321,10 @@
 42
 43
 44
-45
-46</pre>
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call_block'>call_block</span><span class='lparen'>(</span><span class='id identifier rubyid_block'>block</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
@@ -355,17 +355,17 @@
       <pre class="lines">
 
 
+47
 48
 49
 50
 51
 52
 53
-54
-55</pre>
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_jump_error'>handle_jump_error</span><span class='lparen'>(</span><span class='id identifier rubyid_err'>err</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_err'>err</span><span class='period'>.</span><span class='id identifier rubyid_reason'>reason</span>
@@ -395,6 +395,7 @@
       <pre class="lines">
 
 
+20
 21
 22
 23
@@ -407,11 +408,10 @@
 30
 31
 32
-33
-34</pre>
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perform'>perform</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_send_to_object'>send_to_object</span>
@@ -447,12 +447,12 @@
       <pre class="lines">
 
 
+56
 57
-58
-59</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/invoke_method.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_to_object'>send_to_object</span>
   <span class='ivar'>@obj</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='ivar'>@msg_id</span><span class='comma'>,</span> <span class='op'>*</span><span class='ivar'>@argv</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='ivar'>@block</span><span class='rparen'>)</span>

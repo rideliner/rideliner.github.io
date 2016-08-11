@@ -300,6 +300,7 @@
       <pre class="lines">
 
 
+48
 49
 50
 51
@@ -312,15 +313,14 @@
 58
 59
 60
-61
-62</pre>
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/unix.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/unix.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_front'>front</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_filename'>filename</span>
-    <span class='id identifier rubyid_temp'>temp</span> <span class='op'>=</span> <span class='const'>Tempfile</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='qwords_beg'>%w( </span><span class='tstring_content'>dizby-unix</span><span class='words_sep'> </span><span class='tstring_content'>.socket</span><span class='words_sep'> )</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_temp'>temp</span> <span class='op'>=</span> <span class='const'>Tempfile</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='qwords_beg'>%w(</span><span class='tstring_content'>dizby-unix</span><span class='words_sep'> </span><span class='tstring_content'>.socket</span><span class='words_sep'>)</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='id identifier rubyid_temp'>temp</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span>
     <span class='id identifier rubyid_temp'>temp</span><span class='period'>.</span><span class='id identifier rubyid_close!'>close!</span>
   <span class='kw'>end</span>
@@ -359,6 +359,7 @@
       <pre class="lines">
 
 
+83
 84
 85
 86
@@ -371,11 +372,10 @@
 93
 94
 95
-96
-97</pre>
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/unix.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/unix.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set_permissions'>set_permissions</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_owner'>owner</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:unix_owner</span><span class='rbracket'>]</span>
@@ -417,15 +417,15 @@
       <pre class="lines">
 
 
+76
 77
 78
 79
 80
-81
-82</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/unix.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/unix.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept'>accept</span>
   <span class='id identifier rubyid_socket'>socket</span> <span class='op'>=</span> <span class='kw'>super</span>
@@ -453,6 +453,7 @@
       <pre class="lines">
 
 
+63
 64
 65
 66
@@ -463,11 +464,10 @@
 71
 72
 73
-74
-75</pre>
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/unix.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/unix.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_stream'>stream</span>

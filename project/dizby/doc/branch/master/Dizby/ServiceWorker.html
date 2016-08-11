@@ -243,13 +243,13 @@
       <pre class="lines">
 
 
+11
 12
 13
-14
-15</pre>
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span>
   <span class='ivar'>@server</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span>
@@ -282,16 +282,16 @@
       <pre class="lines">
 
 
+36
 37
 38
 39
 40
 41
-42
-43</pre>
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept_connection'>accept_connection</span>
   <span class='id identifier rubyid_connection'>connection</span> <span class='op'>=</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span>
@@ -320,12 +320,12 @@
       <pre class="lines">
 
 
+16
 17
-18
-19</pre>
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_join'>join</span>
   <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='kw'>if</span> <span class='ivar'>@thread</span>
@@ -350,6 +350,7 @@
       <pre class="lines">
 
 
+22
 23
 24
 25
@@ -361,11 +362,10 @@
 31
 32
 33
-34
-35</pre>
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
   <span class='id identifier rubyid_connections'>connections</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>

@@ -331,6 +331,7 @@
       <pre class="lines">
 
 
+11
 12
 13
 14
@@ -347,11 +348,10 @@
 25
 26
 27
-28
-29</pre>
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_strategy'>strategy</span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='rparen'>)</span>
   <span class='ivar'>@server</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span>
@@ -408,12 +408,12 @@
       <pre class="lines">
 
 
+56
 57
-58
-59</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_local_port'>local_port</span>
   <span class='ivar'>@local_port</span>
@@ -450,12 +450,12 @@
       <pre class="lines">
 
 
+56
 57
-58
-59</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remote_port'>remote_port</span>
   <span class='ivar'>@remote_port</span>
@@ -487,12 +487,12 @@
       <pre class="lines">
 
 
+52
 53
-54
-55</pre>
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
@@ -517,12 +517,12 @@
       <pre class="lines">
 
 
+48
 49
-50
-51</pre>
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_and_write_ports'>get_and_write_ports</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
   <span class='ivar'>@strategy</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
@@ -557,6 +557,7 @@
       <pre class="lines">
 
 
+31
 32
 33
 34
@@ -567,11 +568,10 @@
 39
 40
 41
-42
-43</pre>
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_open_ssh'>open_ssh</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ssh'>ssh</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -605,12 +605,12 @@
       <pre class="lines">
 
 
+44
 45
-46
-47</pre>
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_ports'>read_ports</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
   <span class='ivar'>@local_port</span><span class='comma'>,</span> <span class='ivar'>@remote_port</span> <span class='op'>=</span> <span class='ivar'>@strategy</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
