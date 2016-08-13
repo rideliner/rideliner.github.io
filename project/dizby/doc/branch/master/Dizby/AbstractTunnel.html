@@ -232,7 +232,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(server, strategy, user, host)  &#x21d2; AbstractTunnel </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(server, strategy, user, host, **options)  &#x21d2; AbstractTunnel </a>
     
 
     
@@ -257,7 +257,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#open_ssh-instance_method" title="#open_ssh (instance method)">#<strong>open_ssh</strong>(output)  &#x21d2; Object </a>
+      <a href="#loop_ssh-instance_method" title="#loop_ssh (instance method)">#<strong>loop_ssh</strong>(ssh, output)  &#x21d2; Object </a>
     
 
     
@@ -309,7 +309,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(server, strategy, user, host)  &#x21d2; <tt><span class='object_link'><a href="" title="Dizby::AbstractTunnel (class)">AbstractTunnel</a></span></tt> 
+    #<strong>initialize</strong>(server, strategy, user, host, **options)  &#x21d2; <tt><span class='object_link'><a href="" title="Dizby::AbstractTunnel (class)">AbstractTunnel</a></span></tt> 
   
 
   
@@ -347,26 +347,24 @@
 24
 25
 26
-27
-28</pre>
+27</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 11</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_strategy'>strategy</span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_strategy'>strategy</span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='ivar'>@server</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span>
-  <span class='ivar'>@config</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:ssh_config</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_ssh_config'>ssh_config</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:ssh</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:ssh</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@config</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_ssh_config'>ssh_config</span><span class='rbracket'>]</span>
   <span class='ivar'>@strategy</span> <span class='op'>=</span> <span class='id identifier rubyid_strategy'>strategy</span>
 
   <span class='id identifier rubyid_reader'>reader</span><span class='comma'>,</span> <span class='id identifier rubyid_writer'>writer</span> <span class='op'>=</span> <span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_pipe'>pipe</span>
 
   <span class='ivar'>@thread</span> <span class='op'>=</span>
-    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_open_ssh'>open_ssh</span><span class='lparen'>(</span><span class='id identifier rubyid_writer'>writer</span><span class='rparen'>)</span>
+    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='const'>Net</span><span class='op'>::</span><span class='const'>SSH</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@config</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ssh'>ssh</span><span class='op'>|</span>
+      <span class='id identifier rubyid_loop_ssh'>loop_ssh</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_writer'>writer</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
     <span class='kw'>end</span>
-
-  <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_abort_on_exception'>abort_on_exception</span> <span class='op'>=</span> <span class='kw'>true</span>
 
   <span class='id identifier rubyid_read_ports'>read_ports</span><span class='lparen'>(</span><span class='id identifier rubyid_reader'>reader</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
@@ -408,12 +406,12 @@
       <pre class="lines">
 
 
-56
-57
-58</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_local_port'>local_port</span>
   <span class='ivar'>@local_port</span>
@@ -450,12 +448,12 @@
       <pre class="lines">
 
 
-56
-57
-58</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remote_port'>remote_port</span>
   <span class='ivar'>@remote_port</span>
@@ -487,12 +485,12 @@
       <pre class="lines">
 
 
-52
-53
-54</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
@@ -517,12 +515,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_and_write_ports'>get_and_write_ports</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
   <span class='ivar'>@strategy</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
@@ -533,9 +531,9 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="open_ssh-instance_method">
+  <h3 class="signature " id="loop_ssh-instance_method">
   
-    #<strong>open_ssh</strong>(output)  &#x21d2; <tt>Object</tt> 
+    #<strong>loop_ssh</strong>(ssh, output)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -557,33 +555,21 @@
       <pre class="lines">
 
 
+30
 31
 32
 33
 34
-35
-36
-37
-38
-39
-40
-41
-42</pre>
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 30</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_open_ssh'>open_ssh</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_ssh'>ssh</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='kw'>begin</span>
-    <span class='id identifier rubyid_ssh'>ssh</span> <span class='op'>=</span> <span class='const'>Net</span><span class='op'>::</span><span class='const'>SSH</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@config</span><span class='rparen'>)</span>
-
-    <span class='id identifier rubyid_get_and_write_ports'>get_and_write_ports</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
-
-    <span class='id identifier rubyid_wait'>wait</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='rparen'>)</span>
-  <span class='kw'>ensure</span>
-    <span class='id identifier rubyid_ssh'>ssh</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_ssh'>ssh</span>
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_loop_ssh'>loop_ssh</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_and_write_ports'>get_and_write_ports</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_wait'>wait</span><span class='lparen'>(</span><span class='id identifier rubyid_ssh'>ssh</span><span class='rparen'>)</span>
+<span class='kw'>ensure</span>
+  <span class='id identifier rubyid_ssh'>ssh</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_ssh'>ssh</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -605,12 +591,12 @@
       <pre class="lines">
 
 
-44
-45
-46</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_ports'>read_ports</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
   <span class='ivar'>@local_port</span><span class='comma'>,</span> <span class='ivar'>@remote_port</span> <span class='op'>=</span> <span class='ivar'>@strategy</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>

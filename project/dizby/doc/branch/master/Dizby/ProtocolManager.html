@@ -144,7 +144,7 @@
         <li class="private ">
   <span class="summary_signature">
     
-      <a href="#call_refined-class_method" title="call_refined (class method)">.<strong>call_refined</strong>(uri, refiner, *base_args)  &#x21d2; Object </a>
+      <a href="#call_refined-class_method" title="call_refined (class method)">.<strong>call_refined</strong>(refiner, base_args, *bonus_args)  &#x21d2; Object </a>
     
 
     
@@ -213,7 +213,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#open_client-class_method" title="open_client (class method)">.<strong>open_client</strong>(server, uri)  &#x21d2; Object </a>
+      <a href="#open_client-class_method" title="open_client (class method)">.<strong>open_client</strong>(server, client_args)  &#x21d2; Object </a>
     
 
     
@@ -236,7 +236,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#open_server-class_method" title="open_server (class method)">.<strong>open_server</strong>(uri, front, config)  &#x21d2; Object </a>
+      <a href="#open_server-class_method" title="open_server (class method)">.<strong>open_server</strong>(server_args)  &#x21d2; Object </a>
     
 
     
@@ -282,7 +282,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#spawn_server-class_method" title="spawn_server (class method)">.<strong>spawn_server</strong>(server, command, uri)  &#x21d2; Object </a>
+      <a href="#spawn_server-class_method" title="spawn_server (class method)">.<strong>spawn_server</strong>(server, spawn_args)  &#x21d2; Object </a>
     
 
     
@@ -326,12 +326,12 @@
       <pre class="lines">
 
 
-13
 14
-15</pre>
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_protocol'>add_protocol</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
   <span class='ivar'>@protocols</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_klass'>klass</span>
@@ -344,7 +344,7 @@
       <div class="method_details ">
   <h3 class="signature " id="call_refined-class_method">
   
-    .<strong>call_refined</strong>(uri, refiner, *base_args)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+    .<strong>call_refined</strong>(refiner, base_args, *bonus_args)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
   
 
   
@@ -356,21 +356,21 @@
       <pre class="lines">
 
 
-31
 32
 33
 34
 35
-36</pre>
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 32</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_call_refined'>call_refined</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_refiner'>refiner</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_base_args'>base_args</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='id identifier rubyid_get_protocol'>get_protocol</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_call_refined'>call_refined</span><span class='lparen'>(</span><span class='id identifier rubyid_refiner'>refiner</span><span class='comma'>,</span> <span class='id identifier rubyid_base_args'>base_args</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_bonus_args'>bonus_args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='id identifier rubyid_get_protocol'>get_protocol</span><span class='lparen'>(</span><span class='id identifier rubyid_base_args'>base_args</span><span class='period'>.</span><span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_refined'>refined</span> <span class='op'>=</span> <span class='id identifier rubyid_refine_protocol'>refine_protocol</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='comma'>,</span> <span class='id identifier rubyid_refiner'>refiner</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid_get_arguments'>get_arguments</span><span class='lparen'>(</span><span class='id identifier rubyid_refined'>refined</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_refined'>refined</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_base_args'>base_args</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid_get_arguments'>get_arguments</span><span class='lparen'>(</span><span class='id identifier rubyid_refined'>refined</span><span class='comma'>,</span> <span class='id identifier rubyid_base_args'>base_args</span><span class='period'>.</span><span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_refined'>refined</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_base_args'>base_args</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_bonus_args'>bonus_args</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -415,14 +415,14 @@
       <pre class="lines">
 
 
-55
 56
 57
 58
-59</pre>
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_arguments'>get_arguments</span><span class='lparen'>(</span><span class='id identifier rubyid_refined'>refined</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>BadURI</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>can&#39;t parse uri: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri'>uri</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_refined'>refined</span><span class='period'>.</span><span class='id identifier rubyid_regex'>regex</span> <span class='op'>=~</span> <span class='id identifier rubyid_uri'>uri</span>
@@ -472,17 +472,17 @@
       <pre class="lines">
 
 
-38
 39
 40
 41
 42
 43
 44
-45</pre>
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_protocol'>get_protocol</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_scheme'>scheme</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -500,7 +500,7 @@
       <div class="method_details ">
   <h3 class="signature " id="open_client-class_method">
   
-    .<strong>open_client</strong>(server, uri)  &#x21d2; <tt>Object</tt> 
+    .<strong>open_client</strong>(server, client_args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -512,15 +512,15 @@
       <pre class="lines">
 
 
-17
 18
-19</pre>
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 18</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_open_client'>open_client</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call_refined'>call_refined</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='symbol'>:client</span><span class='comma'>,</span> <span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_open_client'>open_client</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_client_args'>client_args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call_refined'>call_refined</span><span class='lparen'>(</span><span class='symbol'>:client</span><span class='comma'>,</span> <span class='id identifier rubyid_client_args'>client_args</span><span class='comma'>,</span> <span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -530,7 +530,7 @@
       <div class="method_details ">
   <h3 class="signature " id="open_server-class_method">
   
-    .<strong>open_server</strong>(uri, front, config)  &#x21d2; <tt>Object</tt> 
+    .<strong>open_server</strong>(server_args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -542,15 +542,15 @@
       <pre class="lines">
 
 
-21
 22
-23</pre>
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 22</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_open_server'>open_server</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_front'>front</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call_refined'>call_refined</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='symbol'>:server</span><span class='comma'>,</span> <span class='id identifier rubyid_front'>front</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_open_server'>open_server</span><span class='lparen'>(</span><span class='id identifier rubyid_server_args'>server_args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call_refined'>call_refined</span><span class='lparen'>(</span><span class='symbol'>:server</span><span class='comma'>,</span> <span class='id identifier rubyid_server_args'>server_args</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -595,16 +595,16 @@
       <pre class="lines">
 
 
-47
 48
 49
 50
 51
 52
-53</pre>
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refine_protocol'>refine_protocol</span><span class='lparen'>(</span><span class='id identifier rubyid_protocol'>protocol</span><span class='comma'>,</span> <span class='id identifier rubyid_refinement'>refinement</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_refined'>refined</span> <span class='op'>=</span> <span class='id identifier rubyid_protocol'>protocol</span><span class='period'>.</span><span class='id identifier rubyid_get_refinement'>get_refinement</span><span class='lparen'>(</span><span class='id identifier rubyid_refinement'>refinement</span><span class='rparen'>)</span>
@@ -621,7 +621,7 @@
       <div class="method_details ">
   <h3 class="signature " id="spawn_server-class_method">
   
-    .<strong>spawn_server</strong>(server, command, uri)  &#x21d2; <tt>Object</tt> 
+    .<strong>spawn_server</strong>(server, spawn_args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -633,15 +633,15 @@
       <pre class="lines">
 
 
-25
 26
-27</pre>
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 26</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_spawn_server'>spawn_server</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_call_refined'>call_refined</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='symbol'>:spawn</span><span class='comma'>,</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_spawn_server'>spawn_server</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_spawn_args'>spawn_args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_call_refined'>call_refined</span><span class='lparen'>(</span><span class='symbol'>:spawn</span><span class='comma'>,</span> <span class='id identifier rubyid_spawn_args'>spawn_args</span><span class='comma'>,</span> <span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

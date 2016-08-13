@@ -182,7 +182,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#connect_to-instance_method" title="#connect_to (instance method)">#<strong>connect_to</strong>(uri)  &#x21d2; Object </a>
+      <a href="#connect_to-instance_method" title="#connect_to (instance method)">#<strong>connect_to</strong>(uri:, **options)  &#x21d2; Object </a>
     
 
     
@@ -205,7 +205,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(uri = &#39;&#39;, front = nil, config = {})  &#x21d2; Service </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(uri: &#39;&#39;, front: nil, **config)  &#x21d2; Service </a>
     
 
     
@@ -253,7 +253,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#spawn_on-instance_method" title="#spawn_on (instance method)">#<strong>spawn_on</strong>(command, uri)  &#x21d2; Object </a>
+      <a href="#spawn_on-instance_method" title="#spawn_on (instance method)">#<strong>spawn_on</strong>(uri:, command:, **options)  &#x21d2; Object </a>
     
 
     
@@ -305,7 +305,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(uri = &#39;&#39;, front = nil, config = {})  &#x21d2; <tt><span class='object_link'><a href="" title="Dizby::Service (class)">Service</a></span></tt> 
+    #<strong>initialize</strong>(uri: &#39;&#39;, front: nil, **config)  &#x21d2; <tt><span class='object_link'><a href="" title="Dizby::Service (class)">Service</a></span></tt> 
   
 
   
@@ -340,15 +340,17 @@
 24
 25
 26
-27</pre>
+27
+28</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 14</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_front'>front</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>uri:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>front:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='const'>DEFAULT_CONFIG</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
 
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='const'>ProtocolManager</span><span class='period'>.</span><span class='id identifier rubyid_open_server'>open_server</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_front'>front</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='const'>ServerArguments</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_front'>front</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='const'>ProtocolManager</span><span class='period'>.</span><span class='id identifier rubyid_open_server'>open_server</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
 <span class='kw'>rescue</span> <span class='const'>NonAcceptingServer</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_err'>err</span>
   <span class='comment'># This is to allow servers that don&#39;t accept connections
 </span>  <span class='comment'># Not all servers will allow connections back to them, so don&#39;t allow it
@@ -409,12 +411,12 @@
       <pre class="lines">
 
 
-43
-44
-45</pre>
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alive?'>alive?</span>
   <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_alive?'>alive?</span>
@@ -439,14 +441,14 @@
       <pre class="lines">
 
 
-37
-38
-39
 40
-41</pre>
+41
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='const'>Dizby</span><span class='period'>.</span><span class='id identifier rubyid_unregister_server'>unregister_server</span> <span class='ivar'>@server</span>
@@ -461,7 +463,7 @@
       <div class="method_details ">
   <h3 class="signature " id="connect_to-instance_method">
   
-    #<strong>connect_to</strong>(uri)  &#x21d2; <tt>Object</tt> 
+    #<strong>connect_to</strong>(uri:, **options)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -473,15 +475,17 @@
       <pre class="lines">
 
 
-29
 30
-31</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 30</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_connect_to'>connect_to</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
-  <span class='const'>ObjectProxy</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_connect_to'>connect_to</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_connect_to'>connect_to</span><span class='lparen'>(</span><span class='label'>uri:</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='const'>ClientArguments</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='const'>ObjectProxy</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_connect_to'>connect_to</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -526,13 +530,13 @@
       <pre class="lines">
 
 
-60
-61
-62
-63</pre>
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_server='>server=</span><span class='lparen'>(</span><span class='id identifier rubyid_srvr'>srvr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>DistributedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>server could not be opened</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_srvr'>srvr</span>
@@ -546,7 +550,7 @@
       <div class="method_details ">
   <h3 class="signature " id="spawn_on-instance_method">
   
-    #<strong>spawn_on</strong>(command, uri)  &#x21d2; <tt>Object</tt> 
+    #<strong>spawn_on</strong>(uri:, command:, **options)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -558,15 +562,17 @@
       <pre class="lines">
 
 
-33
-34
-35</pre>
+35
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 35</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_spawn_on'>spawn_on</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span>
-  <span class='const'>ObjectProxy</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_spawn_on'>spawn_on</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_spawn_on'>spawn_on</span><span class='lparen'>(</span><span class='label'>uri:</span><span class='comma'>,</span> <span class='label'>command:</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='const'>SpawnArguments</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='const'>ObjectProxy</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_spawn_on'>spawn_on</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -588,12 +594,12 @@
       <pre class="lines">
 
 
-47
-48
-49</pre>
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/service.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wait'>wait</span>
   <span class='ivar'>@worker</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='kw'>if</span> <span class='ivar'>@worker</span>

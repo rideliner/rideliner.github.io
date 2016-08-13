@@ -151,7 +151,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(server, strategy, user, host)  &#x21d2; BasicTunnel </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(*abstract_args, client_args)  &#x21d2; BasicTunnel </a>
     
 
     
@@ -209,14 +209,14 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="AbstractTunnel.html" title="Dizby::AbstractTunnel (class)">AbstractTunnel</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="AbstractTunnel.html#get_and_write_ports-instance_method" title="Dizby::AbstractTunnel#get_and_write_ports (method)">#get_and_write_ports</a></span>, <span class='object_link'><a href="AbstractTunnel.html#open_ssh-instance_method" title="Dizby::AbstractTunnel#open_ssh (method)">#open_ssh</a></span>, <span class='object_link'><a href="AbstractTunnel.html#read_ports-instance_method" title="Dizby::AbstractTunnel#read_ports (method)">#read_ports</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="AbstractTunnel.html#get_and_write_ports-instance_method" title="Dizby::AbstractTunnel#get_and_write_ports (method)">#get_and_write_ports</a></span>, <span class='object_link'><a href="AbstractTunnel.html#loop_ssh-instance_method" title="Dizby::AbstractTunnel#loop_ssh (method)">#loop_ssh</a></span>, <span class='object_link'><a href="AbstractTunnel.html#read_ports-instance_method" title="Dizby::AbstractTunnel#read_ports (method)">#read_ports</a></span></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(server, strategy, user, host)  &#x21d2; <tt><span class='object_link'><a href="" title="Dizby::BasicTunnel (class)">BasicTunnel</a></span></tt> 
+    #<strong>initialize</strong>(*abstract_args, client_args)  &#x21d2; <tt><span class='object_link'><a href="" title="Dizby::BasicTunnel (class)">BasicTunnel</a></span></tt> 
   
 
   
@@ -247,10 +247,10 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/basic.rb', line 11</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_strategy'>strategy</span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_abstract_args'>abstract_args</span><span class='comma'>,</span> <span class='id identifier rubyid_client_args'>client_args</span><span class='rparen'>)</span>
   <span class='ivar'>@working</span> <span class='op'>=</span> <span class='kw'>true</span>
 
-  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_strategy'>strategy</span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_abstract_args'>abstract_args</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_client_args'>client_args</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
