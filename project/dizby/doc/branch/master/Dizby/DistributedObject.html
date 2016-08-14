@@ -224,9 +224,11 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#respond_to_missing%3F-instance_method" title="#respond_to_missing? (instance method)">#<strong>respond_to_missing?</strong>(msg_id, priv = false)  &#x21d2; Boolean </a>
+      <a href="#respond_to%3F-instance_method" title="#respond_to? (instance method)">#<strong>respond_to?</strong>(msg_id, priv = false)  &#x21d2; Boolean </a>
     
 
+    
+      (also: #respond_to_missing?)
     
   </span>
   
@@ -418,11 +420,15 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="respond_to_missing?-instance_method">
+  <h3 class="signature " id="respond_to?-instance_method">
   
-    #<strong>respond_to_missing?</strong>(msg_id, priv = false)  &#x21d2; <tt>Boolean</tt> 
+    #<strong>respond_to?</strong>(msg_id, priv = false)  &#x21d2; <tt>Boolean</tt> 
   
 
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='respond_to_missing?-instance_method'>respond_to_missing?</span></span>
+    </span>
   
 
   
@@ -473,7 +479,7 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/dizby/distributed/object.rb', line 33</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='id identifier rubyid_msg_id'>msg_id</span><span class='comma'>,</span> <span class='id identifier rubyid_priv'>priv</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_msg_id'>msg_id</span><span class='comma'>,</span> <span class='id identifier rubyid_priv'>priv</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_responds'>responds</span> <span class='op'>=</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_msg_id'>msg_id</span>
     <span class='kw'>when</span> <span class='symbol'>:_dump</span>
