@@ -133,29 +133,6 @@
 
     <ul class="summary">
       
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#get_refinement-instance_method" title="#get_refinement (instance method)">#<strong>get_refinement</strong>(type)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-</div></span>
-  
-</li>
-
-      
         <li class="protected ">
   <span class="summary_signature">
     
@@ -168,6 +145,29 @@
   
   
   <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#refinements-instance_method" title="#refinements (instance method)">#<strong>refinements</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
   
   
   
@@ -236,41 +236,7 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="get_refinement-instance_method">
-  
-    #<strong>get_refinement</strong>(type)  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-15
-16
-17
-18
-19</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/basic.rb', line 15</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_get_refinement'>get_refinement</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='symbol'>:@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'>_refined</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='kw'>rescue</span> <span class='const'>NameError</span>
-  <span class='kw'>nil</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="refine-instance_method">
+  <h3 class="signature first" id="refine-instance_method">
   
     #<strong>refine</strong>(type, regex, &amp;block)  &#x21d2; <tt>Object</tt>  <span class="extras">(protected)</span>
   
@@ -284,17 +250,45 @@
       <pre class="lines">
 
 
-25
-26
-27
-28</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/basic.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/basic.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refine'>refine</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_regex'>regex</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_refined'>refined</span> <span class='op'>=</span> <span class='const'>RefinedProtocol</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_regex'>regex</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='symbol'>:@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'>_refined</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_refined'>refined</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_refinements'>refinements</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>RefinedProtocol</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_regex'>regex</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="refinements-instance_method">
+  
+    #<strong>refinements</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocol/basic.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_refinements'>refinements</span>
+  <span class='ivar'>@refinements</span> <span class='op'>||=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

@@ -607,7 +607,7 @@
       <pre class="code"><span class="info file"># File 'lib/dizby/protocol/manager.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refine_protocol'>refine_protocol</span><span class='lparen'>(</span><span class='id identifier rubyid_protocol'>protocol</span><span class='comma'>,</span> <span class='id identifier rubyid_refinement'>refinement</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_refined'>refined</span> <span class='op'>=</span> <span class='id identifier rubyid_protocol'>protocol</span><span class='period'>.</span><span class='id identifier rubyid_get_refinement'>get_refinement</span><span class='lparen'>(</span><span class='id identifier rubyid_refinement'>refinement</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_refined'>refined</span> <span class='op'>=</span> <span class='id identifier rubyid_protocol'>protocol</span><span class='period'>.</span><span class='id identifier rubyid_refinements'>refinements</span><span class='lbracket'>[</span><span class='id identifier rubyid_refinement'>refinement</span><span class='rbracket'>]</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_refined'>refined</span> <span class='kw'>if</span> <span class='id identifier rubyid_refined'>refined</span>
 
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span>

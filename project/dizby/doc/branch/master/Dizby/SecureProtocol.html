@@ -136,7 +136,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#delegatable_tunnel-class_method" title="delegatable_tunnel (class method)">.<strong>delegatable_tunnel</strong>(factory, server, tunnel)  &#x21d2; Object </a>
+      <a href="#create_delegated_tunnel-class_method" title="create_delegated_tunnel (class method)">.<strong>create_delegated_tunnel</strong>(tunnel_type, server, port, *args)  &#x21d2; Object </a>
     
 
     
@@ -177,9 +177,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="delegatable_tunnel-class_method">
+  <h3 class="signature first" id="create_delegated_tunnel-class_method">
   
-    .<strong>delegatable_tunnel</strong>(factory, server, tunnel)  &#x21d2; <tt>Object</tt> 
+    .<strong>create_delegated_tunnel</strong>(tunnel_type, server, port, *args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -191,23 +191,31 @@
       <pre class="lines">
 
 
-64
-65
-66
-67
-68
 69
-70</pre>
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/secure.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/protocols/secure.rb', line 69</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delegatable_tunnel'>delegatable_tunnel</span><span class='lparen'>(</span><span class='id identifier rubyid_factory'>factory</span><span class='comma'>,</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_tunnel'>tunnel</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_bidirectional?'>bidirectional?</span>
-    <span class='const'>ResponseTunnel</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_tunnel'>tunnel</span><span class='rparen'>)</span>
-  <span class='kw'>else</span>
-    <span class='const'>DirectTunnel</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_tunnel'>tunnel</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_delegated_tunnel'>create_delegated_tunnel</span><span class='lparen'>(</span><span class='id identifier rubyid_tunnel_type'>tunnel_type</span><span class='comma'>,</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_strategy'>strategy</span><span class='comma'>,</span> <span class='id identifier rubyid_delegated_type'>delegated_type</span> <span class='op'>=</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:port</span><span class='rparen'>)</span>
+      <span class='lbracket'>[</span><span class='const'>BidirectionalTunnelStrategy</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_port'>port</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='const'>ResponseTunnel</span><span class='rbracket'>]</span>
+    <span class='kw'>else</span>
+      <span class='lbracket'>[</span><span class='const'>LocalTunnelStrategy</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_port'>port</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='const'>DirectTunnel</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_tunnel'>tunnel</span> <span class='op'>=</span> <span class='id identifier rubyid_tunnel_type'>tunnel_type</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_strategy'>strategy</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_delegated_type'>delegated_type</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_tunnel'>tunnel</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

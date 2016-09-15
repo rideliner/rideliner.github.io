@@ -373,7 +373,7 @@
       <pre class="code"><span class="info file"># File 'lib/dizby/utility/timed_state.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_progress'>progress</span>
-  <span class='ivar'>@time</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@time</span> <span class='op'>-=</span> <span class='ivar'>@timeout</span>
   <span class='ivar'>@state</span> <span class='op'>=</span>
     <span class='kw'>case</span> <span class='ivar'>@state</span>
     <span class='kw'>when</span> <span class='symbol'>:active</span>

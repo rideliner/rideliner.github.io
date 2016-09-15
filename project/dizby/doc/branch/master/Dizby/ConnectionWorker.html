@@ -144,7 +144,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(server, conn)  &#x21d2; ConnectionWorker </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(service_worker, server, conn)  &#x21d2; ConnectionWorker </a>
     
 
     
@@ -212,6 +212,29 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shutdown-instance_method" title="#shutdown (instance method)">#<strong>shutdown</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -221,7 +244,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(server, conn)  &#x21d2; <tt><span class='object_link'><a href="" title="Dizby::ConnectionWorker (class)">ConnectionWorker</a></span></tt> 
+    #<strong>initialize</strong>(service_worker, server, conn)  &#x21d2; <tt><span class='object_link'><a href="" title="Dizby::ConnectionWorker (class)">ConnectionWorker</a></span></tt> 
   
 
   
@@ -248,12 +271,14 @@
 13
 14
 15
-16</pre>
+16
+17</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/dizby/worker/connection.rb', line 11</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_conn'>conn</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_service_worker'>service_worker</span><span class='comma'>,</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='id identifier rubyid_conn'>conn</span><span class='rparen'>)</span>
+  <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='id identifier rubyid_service_worker'>service_worker</span>
   <span class='ivar'>@server</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span>
   <span class='ivar'>@conn</span> <span class='op'>=</span> <span class='id identifier rubyid_conn'>conn</span>
 
@@ -286,21 +311,25 @@
       <pre class="lines">
 
 
-18
-19
-20
-21
-22
-23</pre>
+28
+29
+30
+31
+32
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/connection.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/connection.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
-  <span class='ivar'>@conn</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>unless</span> <span class='ivar'>@conn</span><span class='period'>.</span><span class='id identifier rubyid_closed?'>closed?</span>
+  <span class='ivar'>@conn</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
 
-  <span class='comment'># TODO: @thread gets set to nil for some reason...
-</span>  <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='kw'>if</span> <span class='ivar'>@thread</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@parent</span>
+
+  <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_remove_worker'>remove_worker</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -322,22 +351,22 @@
       <pre class="lines">
 
 
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47</pre>
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/connection.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/connection.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_request'>process_request</span>
   <span class='id identifier rubyid_succ'>succ</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>InvokeMethod</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@server</span><span class='comma'>,</span> <span class='op'>*</span><span class='ivar'>@conn</span><span class='period'>.</span><span class='id identifier rubyid_recv_request'>recv_request</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span>
@@ -372,23 +401,67 @@
       <pre class="lines">
 
 
-27
-28
-29
-30
-31
-32
-33</pre>
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/connection.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/connection.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_requests'>process_requests</span>
   <span class='id identifier rubyid_loop'>loop</span> <span class='lbrace'>{</span> <span class='kw'>break</span> <span class='kw'>unless</span> <span class='id identifier rubyid_process_request'>process_request</span> <span class='rbrace'>}</span>
 <span class='kw'>rescue</span> <span class='const'>RemoteServerShutdown</span>
-  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lost connection to server at </span><span class='embexpr_beg'>#{</span><span class='ivar'>@conn</span><span class='period'>.</span><span class='id identifier rubyid_remote_uri'>remote_uri</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Lost connection to client</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>rescue</span>
+  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='lparen'>(</span><span class='gvar'>$!</span><span class='rparen'>)</span>
 <span class='kw'>ensure</span>
-  <span class='ivar'>@conn</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>unless</span> <span class='ivar'>@conn</span><span class='period'>.</span><span class='id identifier rubyid_closed?'>closed?</span>
+  <span class='id identifier rubyid_close'>close</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shutdown-instance_method">
+  
+    #<strong>shutdown</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/connection.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shutdown'>shutdown</span>
+  <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Shutting down connection to client</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@conn</span><span class='period'>.</span><span class='id identifier rubyid_shutdown'>shutdown</span>
+
+  <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='kw'>if</span> <span class='ivar'>@thread</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_alive?'>alive?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

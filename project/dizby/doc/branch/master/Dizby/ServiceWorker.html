@@ -98,7 +98,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/dizby/worker/server.rb</dd>
+    <dd>lib/dizby/worker/service.rb</dd>
   </dl>
   
 </div>
@@ -106,6 +106,37 @@
 
 
 
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#workers-instance_method" title="#workers (instance method)">#<strong>workers</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute workers.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
 
 
 
@@ -189,6 +220,29 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_worker-instance_method" title="#remove_worker (instance method)">#<strong>remove_worker</strong>(worker)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
         <li class="private ">
   <span class="summary_signature">
     
@@ -246,14 +300,16 @@
 11
 12
 13
-14</pre>
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/service.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span>
   <span class='ivar'>@server</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span>
   <span class='ivar'>@thread</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_run'>run</span> <span class='rbrace'>}</span>
+  <span class='ivar'>@workers</span> <span class='op'>=</span> <span class='const'>Dizby</span><span class='period'>.</span><span class='id identifier rubyid_monitor'>monitor</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -261,6 +317,53 @@
 </div>
   
 </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="workers=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="workers-instance_method">
+  
+    #<strong>workers</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute workers</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/service.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_workers'>workers</span>
+  <span class='ivar'>@workers</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -282,23 +385,23 @@
       <pre class="lines">
 
 
-36
-37
-38
-39
-40
-41
-42</pre>
+42
+43
+44
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/service.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept_connection'>accept_connection</span>
   <span class='id identifier rubyid_connection'>connection</span> <span class='op'>=</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_connection'>connection</span>
 
   <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_add_uri_alias'>add_uri_alias</span> <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_remote_uri'>remote_uri</span>
-  <span class='const'>ConnectionWorker</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@server</span><span class='comma'>,</span> <span class='id identifier rubyid_connection'>connection</span><span class='rparen'>)</span>
+  <span class='const'>ConnectionWorker</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='ivar'>@server</span><span class='comma'>,</span> <span class='id identifier rubyid_connection'>connection</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -320,15 +423,45 @@
       <pre class="lines">
 
 
-16
 17
-18</pre>
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/service.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_join'>join</span>
   <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='kw'>if</span> <span class='ivar'>@thread</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_worker-instance_method">
+  
+    #<strong>remove_worker</strong>(worker)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/service.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_worker'>remove_worker</span><span class='lparen'>(</span><span class='id identifier rubyid_worker'>worker</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_workers'>workers</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_workers'>workers</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_worker'>worker</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -350,35 +483,33 @@
       <pre class="lines">
 
 
-22
-23
-24
-25
-26
-27
-28
 29
 30
 31
 32
 33
-34</pre>
+34
+35
+36
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/worker/server.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/worker/service.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
-  <span class='id identifier rubyid_connections'>connections</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_conn'>conn</span> <span class='op'>=</span> <span class='id identifier rubyid_accept_connection'>accept_connection</span>
-    <span class='id identifier rubyid_connections'>connections</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_conn'>conn</span> <span class='kw'>if</span> <span class='id identifier rubyid_conn'>conn</span>
+    <span class='id identifier rubyid_worker'>worker</span> <span class='op'>=</span> <span class='id identifier rubyid_accept_connection'>accept_connection</span>
+    <span class='id identifier rubyid_workers'>workers</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_workers'>workers</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_worker'>worker</span> <span class='kw'>if</span> <span class='id identifier rubyid_worker'>worker</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>rescue</span> <span class='const'>LocalServerShutdown</span>
   <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Server shutdown</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>ensure</span>
-  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_alive?'>alive?</span>
+  <span class='id identifier rubyid_workers'>workers</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_workers'>workers</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:shutdown</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 
-  <span class='id identifier rubyid_connections'>connections</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:close</span><span class='rparen'>)</span>
+  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

@@ -280,27 +280,21 @@
 31
 32
 33
-34
-35
-36
-37</pre>
+34</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/spawned.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_spawned'>handle_spawned</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_service'>service</span> <span class='op'>=</span> <span class='kw'>nil</span>
-
   <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_obtain_object'>obtain_object</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_origin'>origin</span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span> <span class='symbol'>:__dizby_exit__</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_service'>service</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_service'>service</span>
-  <span class='kw'>end</span>
+  <span class='const'>Service</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='label'>uri:</span> <span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='label'>front:</span> <span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_service'>service</span><span class='op'>|</span>
+    <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span> <span class='symbol'>:__dizby_exit__</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_service'>service</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_service'>service</span>
+    <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_service'>service</span> <span class='op'>=</span> <span class='const'>Service</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>uri:</span> <span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='label'>front:</span> <span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
-  <span class='kw'>yield</span> <span class='id identifier rubyid_service'>service</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
-<span class='kw'>ensure</span>
-  <span class='id identifier rubyid_service'>service</span><span class='period'>.</span><span class='id identifier rubyid_wait'>wait</span> <span class='kw'>if</span> <span class='id identifier rubyid_service'>service</span>
+    <span class='kw'>yield</span> <span class='id identifier rubyid_service'>service</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -322,18 +316,18 @@
       <pre class="lines">
 
 
+36
+37
+38
 39
 40
 41
 42
 43
-44
-45
-46
-47</pre>
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/spawned.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/spawned.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_obtain_object'>obtain_object</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_origin'>origin</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_barriers'>barriers</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='gvar'>$stdout</span><span class='comma'>,</span> <span class='gvar'>$stdin</span><span class='comma'>,</span> <span class='gvar'>$stderr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span> <span class='const'>IOBarrier</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='rparen'>)</span> <span class='rbrace'>}</span>

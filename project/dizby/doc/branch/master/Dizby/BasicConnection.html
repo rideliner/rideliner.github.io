@@ -275,10 +275,10 @@
 </li>
 
       
-        <li class="private ">
+        <li class="public ">
   <span class="summary_signature">
     
-      <a href="#wait_for_stream-instance_method" title="#wait_for_stream (instance method)">#<strong>wait_for_stream</strong>  &#x21d2; Object </a>
+      <a href="#shutdown-instance_method" title="#shutdown (instance method)">#<strong>shutdown</strong>  &#x21d2; Object </a>
     
 
     
@@ -286,7 +286,7 @@
   
   
   
-  <span class="note title private">private</span>
+  
   
   
   
@@ -381,7 +381,7 @@
   <span class='comment'># get the uri that the client recognizes the server as
 </span>  <span class='ivar'>@remote_uri</span> <span class='op'>=</span> <span class='id identifier rubyid_read'>read</span>
 
-  <span class='ivar'>@shutdown_pipe</span> <span class='op'>=</span> <span class='const'>SelfPipe</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_pipe'>pipe</span><span class='rparen'>)</span>
+  <span class='ivar'>@shutdown_pipe</span> <span class='op'>=</span> <span class='const'>ShutdownPipe</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@object_space</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -421,12 +421,12 @@
       <pre class="lines">
 
 
-66
-67
-68</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span>
   <span class='ivar'>@shutdown_pipe</span>
@@ -458,18 +458,20 @@
       <pre class="lines">
 
 
-43
-44
-45
-46
-47</pre>
+47
+48
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Closing connection to client</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@object_space</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
-  <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span><span class='period'>.</span><span class='id identifier rubyid_close_write'>close_write</span> <span class='kw'>if</span> <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span>
+  <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
   <span class='kw'>super</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -503,14 +505,14 @@ so that it doesn’t get consumed by the garbage collector</p>
       <pre class="lines">
 
 
-53
-54
-55
-56
-57</pre>
+58
+59
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_distributed'>make_distributed</span><span class='lparen'>(</span><span class='id identifier rubyid__obj'>_obj</span><span class='comma'>,</span> <span class='id identifier rubyid__error'>_error</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_distributed'>distributed</span> <span class='op'>=</span> <span class='kw'>super</span>
@@ -579,7 +581,7 @@ so that it doesn’t get consumed by the garbage collector</p>
       <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recv_request'>recv_request</span>
-  <span class='id identifier rubyid_wait_for_stream'>wait_for_stream</span>
+  <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span><span class='period'>.</span><span class='id identifier rubyid_wait_or_raise'>wait_or_raise</span><span class='lparen'>(</span><span class='ivar'>@stream</span><span class='comma'>,</span> <span class='const'>RemoteServerShutdown</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_ref'>ref</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='id identifier rubyid_argc'>argc</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_read'>read</span> <span class='rbrace'>}</span>
 
@@ -632,9 +634,9 @@ so that it doesn’t get consumed by the garbage collector</p>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="wait_for_stream-instance_method">
+  <h3 class="signature " id="shutdown-instance_method">
   
-    #<strong>wait_for_stream</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+    #<strong>shutdown</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -646,21 +648,15 @@ so that it doesn’t get consumed by the garbage collector</p>
       <pre class="lines">
 
 
-59
-60
-61
-62
-63
-64</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/stream/connection.rb', line 43</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_wait_for_stream'>wait_for_stream</span>
-  <span class='id identifier rubyid_readable'>readable</span><span class='comma'>,</span> <span class='op'>=</span> <span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='ivar'>@stream</span><span class='comma'>,</span> <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>RemoteServerShutdown</span> <span class='kw'>if</span> <span class='id identifier rubyid_readable'>readable</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span>
-<span class='kw'>rescue</span> <span class='const'>IOError</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>RemoteServerShutdown</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_shutdown'>shutdown</span>
+  <span class='id identifier rubyid_shutdown_pipe'>shutdown_pipe</span><span class='period'>.</span><span class='id identifier rubyid_shutdown'>shutdown</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

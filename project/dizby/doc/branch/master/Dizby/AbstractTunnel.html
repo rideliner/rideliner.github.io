@@ -411,12 +411,12 @@
       <pre class="lines">
 
 
-57
-58
-59</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_local_port'>local_port</span>
   <span class='ivar'>@local_port</span>
@@ -453,12 +453,12 @@
       <pre class="lines">
 
 
-57
-58
-59</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remote_port'>remote_port</span>
   <span class='ivar'>@remote_port</span>
@@ -490,12 +490,12 @@
       <pre class="lines">
 
 
-53
-54
-55</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='kw'>if</span> <span class='ivar'>@thread</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_alive?'>alive?</span>
@@ -612,7 +612,11 @@
 48
 49
 50
-51</pre>
+51
+52
+53
+54
+55</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/dizby/tunnel/abstract.rb', line 37</span>
@@ -627,8 +631,12 @@
 
   <span class='id identifier rubyid_read_ports'>read_ports</span><span class='lparen'>(</span><span class='id identifier rubyid_reader'>reader</span><span class='rparen'>)</span>
 <span class='kw'>rescue</span>
-  <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_abort_on_exception'>abort_on_exception</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_abort_on_exception'>abort_on_exception</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='ivar'>@thread</span>
   <span class='id identifier rubyid_close'>close</span>
+
+  <span class='comment'># rethrow the exception if joining the thread doesn&#39;t abort.
+</span>  <span class='comment'># usually caused by failing to connect through SSH.
+</span>  <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>ensure</span>
   <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
 <span class='kw'>end</span></pre>
